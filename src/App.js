@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
+import Filters from './components/Filters';
 import Table from './components/Table';
 import { DataContext } from './providers/data';
 
@@ -18,7 +19,10 @@ function App() {
   }, []);
 
   return (
-    <Table />
+    <>
+      <Filters />
+      <Table />
+    </>
   );
 }
 

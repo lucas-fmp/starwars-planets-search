@@ -2,7 +2,7 @@ import React from 'react';
 import { DataContext } from '../providers/data';
 
 function Table() {
-  const { planets } = React.useContext(DataContext);
+  const { planets, name, filteredByNamePlanets } = React.useContext(DataContext);
   return (
     <table>
       <thead>
@@ -14,7 +14,7 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {
+        { name === '' ? (
           planets.map((planet) => (
             <tr key={ planet.name }>
               {
@@ -22,7 +22,15 @@ function Table() {
               }
             </tr>
           ))
-        }
+        ) : (
+          filteredByNamePlanets.map((plan) => (
+            <tr key={ plan.name }>
+              {
+                Object.values(plan).map((value) => <td key={ value }>{value}</td>)
+              }
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   );
