@@ -5,7 +5,7 @@ import Table from './components/Table';
 import { DataContext } from './providers/data';
 
 function App() {
-  const { setPlanets } = React.useContext(DataContext);
+  const { setPlanets, setFilteredByNamePlanets } = React.useContext(DataContext);
 
   useEffect(() => {
     const getPlanets = async () => {
@@ -14,6 +14,7 @@ function App() {
         delete result.residents;
       });
       setPlanets(results);
+      setFilteredByNamePlanets(results);
     };
     getPlanets();
   }, []);
