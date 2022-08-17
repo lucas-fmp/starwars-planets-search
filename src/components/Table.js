@@ -14,15 +14,7 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        { name === '' ? (
-          planets.map((planet) => (
-            <tr key={ planet.name }>
-              {
-                Object.values(planet).map((value) => <td key={ value }>{value}</td>)
-              }
-            </tr>
-          ))
-        ) : (
+        {
           filteredByNamePlanets.map((plan) => (
             <tr key={ plan.name }>
               {
@@ -30,7 +22,7 @@ function Table() {
               }
             </tr>
           ))
-        )}
+        }
       </tbody>
     </table>
   );
