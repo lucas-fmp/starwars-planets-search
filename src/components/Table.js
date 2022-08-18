@@ -2,7 +2,9 @@ import React from 'react';
 import AppContext from '../context/AppContext';
 
 function Table() {
-  const { planets, filteredByNamePlanets } = React.useContext(AppContext);
+  const {
+    planets, filteredByNamePlanets, filteredByColumn,
+  } = React.useContext(AppContext);
   return (
     <table>
       <thead>
@@ -15,13 +17,24 @@ function Table() {
       </thead>
       <tbody>
         {
-          filteredByNamePlanets.map((plan) => (
-            <tr key={ plan.name }>
-              {
-                Object.values(plan).map((value) => <td key={ value }>{value}</td>)
-              }
-            </tr>
-          ))
+          filteredByColumn ? (
+            filteredByColumn.map((planet) => (
+              <tr key={ planet.name }>
+                {
+                  Object.values(planet).map((value) => <td key={ value }>{value}</td>)
+                }
+              </tr>
+            ))
+          ) : (
+            filteredByNamePlanets.map((plan) => (
+              <tr key={ plan.name }>
+                {
+                  Object.values(plan).map((value) => <td key={ value }>{value}</td>)
+                }
+              </tr>
+            ))
+          )
+
         }
       </tbody>
     </table>

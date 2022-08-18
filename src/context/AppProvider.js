@@ -6,9 +6,26 @@ function AppProvider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [name, setName] = useState('');
   const [filteredByNamePlanets, setFilteredByNamePlanets] = useState([]);
+  const [columnFilter, setColumnFilter] = useState('population');
+  const [comparisonFilter, setComparisonFilter] = useState('maior que');
+  const [valueFilter, setValueFilter] = useState('0');
+  const [filteredByColumn, setFilteredByColumn] = useState();
 
   const values = {
-    planets, setPlanets, name, setName, filteredByNamePlanets, setFilteredByNamePlanets,
+    planets,
+    setPlanets,
+    name,
+    setName,
+    filteredByNamePlanets,
+    setFilteredByNamePlanets,
+    columnFilter,
+    setColumnFilter,
+    comparisonFilter,
+    setComparisonFilter,
+    valueFilter,
+    setValueFilter,
+    filteredByColumn,
+    setFilteredByColumn,
   };
 
   return (
