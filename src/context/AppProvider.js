@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import AppContext from './AppContext';
 
-export const DataContext = React.createContext();
-
-export const DataProvider = ({ children }) => {
+function AppProvider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [name, setName] = useState('');
   const [filteredByNamePlanets, setFilteredByNamePlanets] = useState([]);
@@ -13,12 +12,14 @@ export const DataProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={ values }>
+    <AppContext.Provider value={ values }>
       {children}
-    </DataContext.Provider>
+    </AppContext.Provider>
   );
-};
+}
 
-DataProvider.propTypes = {
+AppProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default AppProvider;

@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import './App.css';
 import Filters from './components/Filters';
 import Table from './components/Table';
-import { DataContext } from './providers/data';
+import AppContext from './context/AppContext';
 
 function App() {
-  const { setPlanets, setFilteredByNamePlanets } = React.useContext(DataContext);
+  const { setPlanets, setFilteredByNamePlanets } = React.useContext(AppContext);
 
   useEffect(() => {
     const getPlanets = async () => {

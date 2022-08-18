@@ -1,8 +1,8 @@
 import React from 'react';
-import { DataContext } from '../providers/data';
+import AppContext from '../context/AppContext';
 
 function Table() {
-  const { planets, filteredByNamePlanets } = React.useContext(DataContext);
+  const { planets, filteredByNamePlanets } = React.useContext(AppContext);
   return (
     <table>
       <thead>

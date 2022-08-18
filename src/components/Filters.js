@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { DataContext } from '../providers/data';
+import AppContext from '../context/AppContext';
 
 function Filters() {
   const {
     planets, setFilteredByNamePlanets, name, setName,
-  } = React.useContext(DataContext);
+  } = React.useContext(AppContext);
 
   useEffect(() => {
     const filterByName = () => {

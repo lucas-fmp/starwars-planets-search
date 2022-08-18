@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { DataProvider } from './providers/data';
+import AppProvider from './context/AppProvider';
 
 ReactDOM.render(
-  <DataProvider>
+  <AppProvider>
     <App />
-  </DataProvider>,
+  </AppProvider>,
   document.getElementById('root'),
 );
