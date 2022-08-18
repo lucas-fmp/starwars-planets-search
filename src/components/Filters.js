@@ -6,6 +6,7 @@ function Filters() {
     planets, setFilteredByNamePlanets, name,
     setName, columnFilter, setColumnFilter, comparisonFilter,
     valueFilter, setComparisonFilter, setValueFilter, setFilteredByColumn,
+    filteredByColumn,
   } = React.useContext(AppContext);
 
   useEffect(() => {
@@ -18,23 +19,38 @@ function Filters() {
   }, [name]);
 
   const applyFilter = () => {
-    if (comparisonFilter === 'maior que') {
-      const filteredArray = planets
-        .filter((planet) => planet[columnFilter] > parseInt(valueFilter, 10));
-      console.log(filteredArray);
-      setFilteredByColumn(filteredArray);
-    }
-    if (comparisonFilter === 'menor que') {
-      const filteredArray = planets
-        .filter((planet) => planet[columnFilter] < parseInt(valueFilter, 10));
-      console.log(filteredArray);
-      setFilteredByColumn(filteredArray);
-    }
-    if (comparisonFilter === 'igual a') {
-      const filteredArray = planets
-        .filter((planet) => planet[columnFilter] === valueFilter);
-      console.log(filteredArray);
-      setFilteredByColumn(filteredArray);
+    if (!filteredByColumn) {
+      if (comparisonFilter === 'maior que') {
+        const filteredArray = planets
+          .filter((planet) => planet[columnFilter] > parseInt(valueFilter, 10));
+        setFilteredByColumn(filteredArray);
+      }
+      if (comparisonFilter === 'menor que') {
+        const filteredArray = planets
+          .filter((planet) => planet[columnFilter] < parseInt(valueFilter, 10));
+        setFilteredByColumn(filteredArray);
+      }
+      if (comparisonFilter === 'igual a') {
+        const filteredArray = planets
+          .filter((planet) => planet[columnFilter] === valueFilter);
+        setFilteredByColumn(filteredArray);
+      }
+    } else {
+      if (comparisonFilter === 'maior que') {
+        const filteredArray = filteredByColumn
+          .filter((planet) => planet[columnFilter] > parseInt(valueFilter, 10));
+        setFilteredByColumn(filteredArray);
+      }
+      if (comparisonFilter === 'menor que') {
+        const filteredArray = filteredByColumn
+          .filter((planet) => planet[columnFilter] < parseInt(valueFilter, 10));
+        setFilteredByColumn(filteredArray);
+      }
+      if (comparisonFilter === 'igual a') {
+        const filteredArray = filteredByColumn
+          .filter((planet) => planet[columnFilter] === valueFilter);
+        setFilteredByColumn(filteredArray);
+      }
     }
   };
 
