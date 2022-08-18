@@ -6,7 +6,7 @@ function Filters() {
     planets, setFilteredByNamePlanets, name,
     setName, columnFilter, setColumnFilter, comparisonFilter,
     valueFilter, setComparisonFilter, setValueFilter, setFilteredByColumn,
-    filteredByColumn,
+    filteredByColumn, columnFilterOptions, setColumnFilterOptions,
   } = React.useContext(AppContext);
 
   useEffect(() => {
@@ -19,6 +19,9 @@ function Filters() {
   }, [name]);
 
   const applyFilter = () => {
+    const newColumnFilterOptions = columnFilterOptions
+      .filter((option) => option !== columnFilter);
+    setColumnFilterOptions(newColumnFilterOptions);
     if (!filteredByColumn) {
       if (comparisonFilter === 'maior que') {
         const filteredArray = planets
@@ -35,6 +38,7 @@ function Filters() {
           .filter((planet) => planet[columnFilter] === valueFilter);
         setFilteredByColumn(filteredArray);
       }
+      setColumnFilter(newColumnFilterOptions[0]);
     } else {
       if (comparisonFilter === 'maior que') {
         const filteredArray = filteredByColumn
@@ -51,6 +55,7 @@ function Filters() {
           .filter((planet) => planet[columnFilter] === valueFilter);
         setFilteredByColumn(filteredArray);
       }
+      setColumnFilter(newColumnFilterOptions[0]);
     }
   };
 
@@ -67,11 +72,11 @@ function Filters() {
         value={ columnFilter }
         onChange={ ({ target }) => setColumnFilter(target.value) }
       >
-        <option value="population">population</option>
-        <option value="orbital_period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="surface_water">surface_water</option>
+        {
+          columnFilterOptions.map((column) => (
+            <option value={ column } key={ column }>{column}</option>
+          ))
+        }
       </select>
       <select
         data-testid="comparison-filter"

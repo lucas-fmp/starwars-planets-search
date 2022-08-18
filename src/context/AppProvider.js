@@ -10,6 +10,9 @@ function AppProvider({ children }) {
   const [comparisonFilter, setComparisonFilter] = useState('maior que');
   const [valueFilter, setValueFilter] = useState('0');
   const [filteredByColumn, setFilteredByColumn] = useState();
+  const [columnFilterOptions, setColumnFilterOptions] = useState(
+    ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
+  );
 
   const values = {
     planets,
@@ -26,6 +29,8 @@ function AppProvider({ children }) {
     setValueFilter,
     filteredByColumn,
     setFilteredByColumn,
+    columnFilterOptions,
+    setColumnFilterOptions,
   };
 
   return (
